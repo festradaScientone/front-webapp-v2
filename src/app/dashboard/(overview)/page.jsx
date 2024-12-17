@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function Page() {
   const data = await getData();  
-  console.log(data.botStatus);
+  
   if (data.botStatus == "standby") {
     redirect("/sync-whatsapp");
   }

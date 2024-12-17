@@ -10,6 +10,10 @@ export default async function Page() {
   const data = await getData();
   const logs = await logService(data.place_id, data.token_clerk);
 
+  if (data.botStatus == "standby") {
+      redirect("/sync-whatsapp");
+    }
+
   function formatDate(dateTimeString) {
     // Crear un objeto Date a partir de la cadena de fecha y hora
     const date = new Date(dateTimeString);
