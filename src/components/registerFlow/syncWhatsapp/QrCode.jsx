@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { qrCodeService } from "@/services/data/qrCode";
 import { StatusBot } from "@/services/data/statusInstance";
 import { useRouter } from "next/navigation";
+import { postUpdateStatusInstance } from "@/services/data/UpdateStatusInstance"; 
+import { postInsertHistoryInstance } from "@/services/data/insertHistoryInstance";
 import "@/styles/qrcode.css";
 
-export default function QrCode({ initialQR, instance_id, token_instance }) {
+export default function QrCode({ initialQR, instance_id, token_instance, place_id, token_clerk }) {
   const [qrCode, setQrCode] = useState(initialQR);
   const [timeLeft, setTimeLeft] = useState(60);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,6 +78,8 @@ export default function QrCode({ initialQR, instance_id, token_instance }) {
           const finalStatus = await StatusBot(instance_id, token_instance);
           if (finalStatus.status == "authenticated") {
             clearInterval(finalConnectionCheck);
+            await postUpdateStatusInstance(true, place_id.replace("instance", ""), token_clerk);
+            await postInsertHistoryInstance("Active", instance_id, place_id.replace("instance", ""), token_clerk);
             router.push('/interaction')        
           }
         }, 2000); // Cada 2 segundos

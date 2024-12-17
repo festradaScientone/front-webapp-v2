@@ -1,8 +1,4 @@
 
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-const tokeUser = cookies.get("tokeUser");
-
 async function termAndConditions(instanceId, termAndConditions, token) {
     const onlyNumber = instanceId.match(/\d+/g);
     const apiUrlBase = process.env.NEXT_PUBLIC_API;

@@ -9,7 +9,7 @@ export default async function Page() {
 
   const data = await getData();
   const Qr = await qrCodeService(data.instance_id, data.token_instance);  
-  
+  console.log(data)
 
   return (
     <>
@@ -72,7 +72,7 @@ export default async function Page() {
                 </div>
 
                 <div className="m-auto">
-                  <QrCode initialQR={Qr.img} instance_id={data.instance_id} token_instance={data.token_instance} />                                    
+                  <QrCode initialQR={Qr.img} instance_id={data.instance_id} token_instance={data.token_instance} place_id={data.place_id} token_clerk={data.token_clerk} />                                    
                   <div className="flex justify-center mt-12">
                     <button
                       /*  onClick={handleContinue} */

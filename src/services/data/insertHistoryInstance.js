@@ -1,8 +1,4 @@
 
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-const tokeUser = cookies.get("tokeUser");
-
 const postInsertHistoryInstance = async (
   statusInstance,
   instanceMe,
