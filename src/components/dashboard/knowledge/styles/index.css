@@ -1,0 +1,20 @@
+/* Base theme */
+.bn-container[data-theming-css-variables-demo][data-color-scheme] {
+  --bn-colors-tooltip-text: #001238;
+  --bn-colors-tooltip-background: #d6f898;
+  
+
+  --bn-colors-editor-text: #001238;  
+ 
+
+  --bn-colors-hovered-text: #001238;
+  --bn-colors-hovered-background: #d6f898;
+  
+  --bn-colors-menu-text: #001238;
+  
+  --bn-font-family: 'adelle-sans', sans-serif;
+  --bn-colors-tooltip-family: 'adelle-sans', sans-serif;
+  --bn-colors-menu-family: 'adelle-sans', sans-serif;
+  
+}
+

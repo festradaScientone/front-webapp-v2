@@ -1,0 +1,32 @@
+.box {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    visibility: hidden;
+  }
+  .box.show {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+  .box.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    visibility: hidden;
+  }
+
+
+  #journal-scroll::-webkit-scrollbar {
+    width: 6px;
+    cursor: pointer;
+  }
+  
+  #journal-scroll::-webkit-scrollbar-track {
+    background-color: rgba(229, 231, 235 var(--bg-opacity));
+    cursor: pointer;
+  }
+  
+  #journal-scroll::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #a0aec0;
+  }

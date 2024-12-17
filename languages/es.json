@@ -1,0 +1,29 @@
+{
+  "Header": {
+    "Language": "Lenguaje",
+    "español": "Español",
+    "english": "Inglés"
+  },
+    "MarketingPage": {
+      "title": "Un agente virtual completo",
+      "description": "Experimenta la próxima generación de asistencia al cliente con nuestros agentes virtuales personalizados. Descubre el poder de la IA que supera los chatbots tradicionales.",
+      "subtitle": "Pruébalo. ¡Es gratis!",
+      "button": "Necesito un agente virtual para mi",
+      "options": "Escoge una opcion",
+      "hotel": "Hotel",
+      "store": "Tienda",
+      "Travel Agency": "Agencia de viajes",
+      "restaurant": "Restaurante",
+      "school": "Escuela"
+    },
+    "welcome": {
+      "title": "Bienvenido! Vamos a configurar tu Asistente",
+      "description": "Comienza desde cero o con un texto de ejemplo.",
+      "optionOneTitulo": "Comienza con un Ejemplo",
+      "optionOneParagraph": "La manera más sencilla de comenzar. Te proporcionamos un texto de ejemplo y contenido de relleno.",
+      "optionTwoTitulo": "Importar desde URL",
+      "optionTwoParagraph": "Todos los contenidos, incluyendo imágenes, se importarán para tu sitio web.",
+      "optionThreeTitulo": "Comienza desde Cero",
+      "optionThreeParagraph": "Crea tu Asistente desde cero."
+    }
+  }

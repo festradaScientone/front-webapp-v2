@@ -1,0 +1,29 @@
+{
+  "Header": {
+    "Language": "Language",
+    "español": "Spanish",
+    "english": "English"  
+  },
+    "MarketingPage": {
+      "title": "A full AI-powered virtual agent",
+      "description": "Experience the next generation of customer service with our tailored virtual agents. Discover the power of AI beyond traditional chatbots.",
+      "subtitle": "Give it a try. It's free!",
+      "button": "I need a virtual agent for my",
+      "options": "Choose an Option",
+      "hotel": "Hotel",
+      "store": "store",
+      "Travel Agency": "Travel Agency",
+      "restaurant": "Restaurant",
+      "school": "School"
+    },
+    "welcome": {
+      "title": "Welcome! Let's set up your Assistant",
+      "description": "Start from scratch or with an sample text.",
+      "optionOneTitulo": "Start from a Sample",
+      "optionOneParagraph": "The easiest way to start. We provide you with sample text and placeholder content.",
+      "optionTwoTitulo": "Import from URL",
+      "optionTwoParagraph": "All content, including images, will be imported for your website.",
+      "optionThreeTitulo": "Start from Scratch",
+      "optionThreeParagraph": "Build your Assistant from zero."
+    }
+  }
