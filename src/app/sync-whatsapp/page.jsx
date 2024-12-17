@@ -6,6 +6,7 @@ import getData from "@/lib/data/data";
 import { qrCodeService } from "@/services/data/qrCode";
 
 export default async function Page() {
+
   const data = await getData();
   const Qr = await qrCodeService(data.instance_id, data.token_instance);  
   

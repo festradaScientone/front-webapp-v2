@@ -1,17 +1,34 @@
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { permanentRedirect } from 'next/navigation'
 import { getClerkToken } from "@/services/auth/tokenSessionClerk";
 import { getInfoUser } from "@/services/data/getInfoUser";
 import { botStatus } from "@/services/data/botStatus";
 import { botDataService } from "@/services/data/getBotData";
 import { getInstanceData } from "@/services/data/dataInstance";
 import { getMessagesTotal } from "@/services/data/getMessages";
+import { StatusBot } from "@/services/data/statusInstance";
 
 export default async function getData() {
+  
   const { userId } = auth();
 
   try {
     const token = await getClerkToken();
     const userData = await getInfoUser(userId, token);
+    
+    // si bot no activo se redireccionar
+    const statusBot = await StatusBot(JSON.parse(userData["type_chat"]["S"])["instance_id"], JSON.parse(userData["type_chat"]["S"])["token_instance"]);    
+    /* if (statusBot.status == "standby") {   
+      permanentRedirect("/sync-whatsapp");   
+      return {
+        redirect: {
+          destination: "/sync-whatsapp", // Ruta donde completar los datos
+          permanent: false, // Redirección temporal
+        },
+      };
+    } */
+
     const basicBotData = await botStatus(
       JSON.parse(userData["type_chat"]["S"])["instance_id"],
       token
@@ -48,7 +65,9 @@ export default async function getData() {
       bot_type: advanceBotData[0]["type"],
       totalMessages: totalMessages.messages_statistics,
       instanceData: instanceData,
-    };
+      botStatus: statusBot.status,
+    };    
+
     //console.log(instanceData)
     return data;
   } catch (error) {
