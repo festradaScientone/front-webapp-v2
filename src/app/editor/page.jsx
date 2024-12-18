@@ -1,5 +1,5 @@
 "use client";
-import Editor from "@/components/knowledge/Editor";
+import Editor from "@/components/dashboard/knowledge/Editor";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
