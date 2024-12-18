@@ -21,8 +21,7 @@ import { getChats } from "@/services/data/getChats";
 
 export default async function Page({ searchParams }) {
   const data = await getData();
-  const chats = await getChats(data.name_space, data.token_clerk);
-  console.log(chats);
+  const chats = await getChats(data.name_space, data.token_clerk);  
 
   return (
     <div className="flex h-[95%] gap-10">

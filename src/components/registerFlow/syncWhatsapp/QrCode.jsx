@@ -83,7 +83,11 @@ export default function QrCode({ initialQR, instance_id, token_instance, place_i
             router.push('/interaction')        
           }
         }, 2000); // Cada 2 segundos
-      } 
+      }else if(connectionStatus.status == "authenticated"){        
+        await postUpdateStatusInstance(true, place_id.replace("instance", ""), token_clerk);
+        await postInsertHistoryInstance("Active", instance_id, place_id.replace("instance", ""), token_clerk);
+        router.push('/interaction')  
+      }
     } catch (error) {
       console.error("Error checking QR status", error);
     }
