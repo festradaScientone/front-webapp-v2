@@ -1,5 +1,5 @@
 
-import { ConfigurationForm } from "@/components/configuration/ConfigurationForm";
+import { ConfigurationForm } from "@/components/dashboard/configuration/ConfigurationForm";
 
 export const metadata = {
     title: 'Configuration',

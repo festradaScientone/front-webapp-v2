@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("@/components/knowledge/Editor"), {
+const Editor = dynamic(() => import("@/components/dashboard/knowledge/Editor"), {
   ssr: false,
 });
 
