@@ -77,7 +77,8 @@ function Header() {
 
               <SignedOut>
                 <Link
-                  href="/sign-in"
+                  //href="/sign-in"
+                  href="/signin"
                   className="flex font-extrabold gap-2 text-[#000b1a] font-['adelle-sans']"
                 >
                   <svg

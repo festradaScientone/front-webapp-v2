@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import { useTranslations } from "next-intl";
+import { Loader2 } from "lucide-react";
 
 const SelectionOption = ({
   selected,
@@ -14,7 +15,7 @@ const SelectionOption = ({
   t,
   id,
   url,
-  handleUrlChange
+  handleUrlChange,
 }) => (
   <div
     className={`py-5 px-8 rounded-md cursor-pointer transition-all ${
@@ -78,14 +79,20 @@ const SelectionOption = ({
           className="w-full px-3 py-3 focus:outline-none text-[#001238] font-semibold rounded-r-md"
           placeholder="Enter a URL"
           value={url}
-          onChange={(e)=>handleUrlChange(e)}
+          onChange={(e) => handleUrlChange(e)}
         />
       </div>
     )}
   </div>
 );
 
-const StartOptions = ({ handleContinue, t, url, handleUrlChange }) => {
+const StartOptions = ({
+  handleContinue,
+  t,
+  url,
+  handleUrlChange,
+  isLoading,
+}) => {
   const [selected, setSelected] = useState(null);
 
   const options = [
@@ -129,15 +136,22 @@ const StartOptions = ({ handleContinue, t, url, handleUrlChange }) => {
       <div className="flex justify-center mt-6">
         <button
           onClick={() => handleContinue(selected)}
-          disabled={!selected}
-          className={`text-[#001238] font-extrabold px-8 py-3 rounded-lg transition-colors font-['adelle-sans']
+          disabled={!selected || isLoading}
+          className={`text-[#001238] font-extrabold px-8 py-3 rounded-lg transition-colors font-['adelle-sans'] flex items-center gap-2
               ${
-                selected
+                selected 
                   ? "bg-[#d6f898] hover:bg-[#c0f75a] text-gray-900"
                   : "bg-gray-200 text-gray-500 cursor-not-allowed"
               }`}
         >
-          Continue
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Loading...
+            </>
+          ) : (
+            "Continue"
+          )}
         </button>
       </div>
     </div>
@@ -149,6 +163,7 @@ export default function Page() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [url, setUrl] = useState("www.booking.com/hotel/pe/casa-andina");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleUrlChange = (e) => {
     setUrl(e.target.value);
@@ -156,6 +171,7 @@ export default function Page() {
 
   const handleContinue = (value) => {
     const type = searchParams.get("type");
+    setIsLoading(true);
     router.push(
       `/editor?type=${value.toLowerCase()}&template=${type.toLowerCase()}`
     );
@@ -174,7 +190,13 @@ export default function Page() {
               {t("description")}
             </p>
 
-            <StartOptions handleContinue={handleContinue} t={t} url={url} handleUrlChange={handleUrlChange} />
+            <StartOptions
+              handleContinue={handleContinue}
+              t={t}
+              url={url}
+              handleUrlChange={handleUrlChange}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </main>

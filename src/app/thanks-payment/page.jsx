@@ -1,15 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
+import { Loader2 } from "lucide-react";
 
 export default function Page() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleContinue = () => {
+    setIsLoading(true);
     router.push(`/sync-whatsapp`);
   };
 
@@ -82,9 +86,17 @@ export default function Page() {
             <div className="flex justify-center mt-8">
               <button
                 onClick={handleContinue}
-                className="text-[#001238] font-bold px-10 py-3 rounded-lg transition-colors bg-[#d6f898] hover:bg-[#c0f75a]"
+                className="text-[#001238] font-bold px-10 py-3 rounded-lg transition-colors bg-[#d6f898] hover:bg-[#c0f75a] flex items-center"
+                disabled={isLoading}
               >
-                Continue
+                {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Loading...
+                    </>
+                  ) : (
+                    "Continue"
+                  )}
               </button>
             </div>
           </div>

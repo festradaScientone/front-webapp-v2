@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Header from "@/components/Header";
+import { Loader2 } from "lucide-react";
 
 const SelectionOption = ({
   selected,
@@ -80,7 +81,7 @@ const SelectionOption = ({
   </div>
 );
 
-const StartOptions = ({ handleContinue }) => {
+const StartOptions = ({ handleContinue, isLoading }) => {
   const [selected, setSelected] = useState("pro");
 
   const options = [
@@ -120,14 +121,22 @@ const StartOptions = ({ handleContinue }) => {
         <button
           onClick={() => handleContinue(selected)}
           disabled={!selected}
-          className={`text-[#001238] font-bold px-8 py-3 rounded-lg transition-colors
+          className={`text-[#001238] font-bold px-8 py-3 rounded-lg transition-colors flex items-center
               ${
                 selected
                   ? "bg-[#d6f898] hover:bg-[#c0f75a] text-gray-900"
                   : "bg-gray-200 text-gray-500 cursor-not-allowed"
               }`}
         >
-          Continue to Payment
+          {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Loading...
+                    </>
+                  ) : (
+                    "Continue to Payment"
+                  )}
+          
         </button>
       </div>
     </div>
@@ -137,8 +146,10 @@ const StartOptions = ({ handleContinue }) => {
 export default function Page() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleContinue = (value) => {
+    setIsLoading(true);
     router.push(`/payment-details?plan=${value.toLowerCase()}`);
   };
 
@@ -165,7 +176,7 @@ export default function Page() {
               Select a plan to continue
             </h1>
 
-            <StartOptions handleContinue={handleContinue} />
+            <StartOptions handleContinue={handleContinue} isLoading={isLoading} />
           </div>
         </div>
       </main>
